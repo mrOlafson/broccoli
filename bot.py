@@ -32,10 +32,22 @@ async def on_message(message):
 @client.event
 async def on_message(message):
     if 'puchiko' in message.content:
-        print('NYU')
-        await client.send_message(message.channel, "It's 'Broccoli', not 'Puchiko', nyu.")
+        x = random.randint(0, 2)
+        if x == 0:
+            print('NYU 0')
+            await client.send_message(message.channel, "It's 'Broccoli', not 'Puchiko', nyu.")
+        elif x == 1:
+            print('NYU 1')
+            await client.send_message(message.channel, "You're terrible at listening, nyu.")
+        elif x == 2:
+            print('NYU 2')
+            await client.send_message(message.channel, "Of course you would do that. After all, it is you.")
+        elif x == 3:
+            print('NYU 3')
+            await client.send_message(message.channel, "3")
 
 
+        
 
 @client.command(pass_context=True)
 async def adm_auth(ctx):
