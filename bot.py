@@ -1,6 +1,7 @@
 import discord
 from discord import Game
 from discord.ext import commands
+from discord.utils import get
 import asyncio
 import requests
 import os
@@ -9,7 +10,7 @@ import random
 
 TOKEN = 'NTA0NTY4NjczMjk4Njc3NzYx.DrG8Yw.vwN_QJ99hthAOjuazOKwqvsas88'
 
-client = commands.Bot(command_prefix = '$.')
+client = commands.Bot(command_prefix = '+')
 client.remove_command('help')
 
 
@@ -19,15 +20,27 @@ async def on_ready():
     print('READY')
     print('--------')
 
+
+@client.event
+async def on_message(message):
+    if message.content.startswith("br. "):
+        x = message.content
+        x = x.replace("br. ", "https://nhentai.net/g/")
+        await client.send_message(message.channel,x + "/")
+    await client.process_commands(message)
+
+
 @client.event
 async def on_message(message):
     if message.content == '§.foo':
         await client.send_message(message.channel, 'bar')
 
-    elif message.content.startswith("§.game "):
+    elif message.content.startswith("pu.game "):
         x = message.content
-        x = x.replace("§.game ", "")
+        x = x.replace("pu.game ", "")
         await client.change_presence(game=Game(name=x))
+    await client.process_commands(message)
+
 
 @client.event
 async def on_message(message):
@@ -45,19 +58,11 @@ async def on_message(message):
         elif x == 3:
             print('NYU 3')
             await client.send_message(message.channel, "3")
+    await client.process_commands(message)
 
 
-        
 
-@client.command(pass_context=True)
-async def adm_auth(ctx):
-    if (ctx.message.author.id == '223111553891827722') :
-        await bot.say("Id recognized.")
-    elif (ctx.message.author.id != '223111553891827722') :
-        await bot.say("Unauthorized Id.")
-        print('Error #001 Unauthorized')
-        print(ctx.message.author.id)
-        print('--------')
+
 
     
 client.run(TOKEN)
