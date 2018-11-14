@@ -8,8 +8,7 @@ import os
 import random
 import string
 from random import randint
-
-
+#import spice_api
 
 
 TOKEN = 'NTA0NTY4NjczMjk4Njc3NzYx.DrG8Yw.vwN_QJ99hthAOjuazOKwqvsas88'
@@ -31,7 +30,7 @@ embed.add_field(name="pu.ht_rd", value="outputs a random nhenai.net link", inlin
 embed.add_field(name="pu.cl (number)", value="deletes (number) messages (may take a moment)", inline=False)
 embed.add_field(name="pu.bulkcl (number)", value="deletes (number) messages at once", inline=False)
 embed.add_field(name="pu.invite", value="sends you an invitation link to add the bot", inline=False)
-embed.set_footer(text="broccoli 1.0.0  |  made by SECoY#0181")
+embed.set_footer(text="broccoli 1.0.1  |  made by SECoY#0181")
 
 
 @client.command(pass_context = True)
@@ -43,7 +42,7 @@ async def cl(ctx, number):
             await client.delete_message(x)
             counter += 1
             await asyncio.sleep(0.05) 
-        await client.say("All done, nyu.")
+    await client.say("All done, nyu.")
 
 @client.command(pass_context = True)
 async def bulkcl(ctx, number):
@@ -75,15 +74,17 @@ async def on_message(message):
     elif message.content.startswith("pu.help"):
         await client.send_message(message.author,embed=embed)
 
-    elif message.content.startswith("pu.goodbye"):
+    elif message.content.startswith("pu!goodbye"):
         if (message.author.id =='223111553891827722'):
             await client.close()
-            os.system("puchi.py")
+            os.system("python3 puchi.py")
         elif (message.author.id !='223111553891827722'):
             y = message.content
-
+    elif message.content.startswith("pu.mal "):
+        y = a
+            
     elif message.content.startswith("pu.invite"):
-        await client.send_message(message.author, "https://bit.ly/2B5wfaV")
+         await client.send_message(message.author, "https://bit.ly/2B5wfaV")
 
     await client.process_commands(message)
 
